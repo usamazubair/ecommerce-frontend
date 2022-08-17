@@ -1,0 +1,16 @@
+.productRoot {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 35px;
+  .content {
+    min-width: 650px;
+    max-width: 650px;
+    text-align: center;
+    h5 {
+      font-size: 20px;
+      margin-bottom: 20px;
+      margin-top: 0;
+    }
+  }
+}

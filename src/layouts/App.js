@@ -5,8 +5,12 @@ import Register from "views/Auth/Register/Register";
 import Admin from "./Admin";
 import UnAuthenticatedRoute from "components/UnAuthenticatedRoute/UnAuthenticatedRoute";
 import AuthenticatedRoute from "components/AuthenticatedRoute/AuthenticatedRoute";
+// import { useUserContext } from "store/contexts/userContext";
+
 
 export default function App() {
+  // const { setUser, isAuthenticated, setIsAuthenticated } = useUserContext();
+  
   return (
     <div>
       <Router>
@@ -22,9 +26,9 @@ export default function App() {
           />
           <Route
             exact
-            path="/"
+            path="/*"
             element={
-              <AuthenticatedRoute exact="true" path="/">
+              <AuthenticatedRoute>
                 <Admin />
               </AuthenticatedRoute>
             }

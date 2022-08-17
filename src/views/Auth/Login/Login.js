@@ -15,10 +15,13 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import AuthService from "services/AuthService";
 import { Link } from "react-router-dom";
+import { useUserContext } from "store/contexts/userContext";
 
 const theme = createTheme();
 
 export default function SignIn() {
+  const { setIsAuthenticated } = useUserContext();
+
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -30,16 +33,21 @@ export default function SignIn() {
     onSubmit: async (values) => {
       try {
         var response = await AuthService.login(values);
-        console.log(response);
+        setLogin({
+          role: response.data.role,
+          email: values.email,
+          token: response.data.token,
+        });
       } catch (e) {
         console.log(e);
       }
     },
   });
 
-  const setLogin = (user) => {
-    localStorage.setItem("user", JSON.stringify(user));
-    localStorage.setItem("token", user.token);
+  const setLogin = ({ role, email, token }) => {
+    localStorage.setItem("email", JSON.stringify(email));
+    localStorage.setItem("role", JSON.stringify(role));
+    localStorage.setItem("token", token);
     setIsAuthenticated(true);
   };
 
