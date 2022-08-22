@@ -11,3 +11,17 @@ body {
 .clickable {
   cursor: pointer;
 }
+
+.tableActions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  .update {
+    color: blue;
+    cursor: pointer;
+  }
+  .delete {
+    color: red;
+    cursor: pointer;
+  }
+}

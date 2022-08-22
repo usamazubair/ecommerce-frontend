@@ -34,8 +34,7 @@ export default function SignIn() {
       try {
         var response = await AuthService.login(values);
         setLogin({
-          role: response.data.role,
-          email: values.email,
+          user: response.data.user,
           token: response.data.token,
         });
       } catch (e) {
@@ -44,9 +43,8 @@ export default function SignIn() {
     },
   });
 
-  const setLogin = ({ role, email, token }) => {
-    localStorage.setItem("email", JSON.stringify(email));
-    localStorage.setItem("role", JSON.stringify(role));
+  const setLogin = ({ role, user, token }) => {
+    localStorage.setItem("user", JSON.stringify(user));
     localStorage.setItem("token", token);
     setIsAuthenticated(true);
   };

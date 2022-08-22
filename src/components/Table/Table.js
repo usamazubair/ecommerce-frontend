@@ -7,12 +7,12 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 
-export default function DataTable({ headings }) {
-  function createData(name, quantity, price, color, Brand) {
-    return { name, quantity, price, color, Brand };
-  }
-
-  const rows = [createData("Frozen yoghurt", 2, 100, "red", "Sony")];
+export default function DataTable({
+  headings,
+  tableData,
+  updateFunction,
+  deleteFunction,
+}) {
 
   return (
     <TableContainer component={Paper}>
@@ -24,21 +24,40 @@ export default function DataTable({ headings }) {
                 {heading.heading}
               </TableCell>
             ))}
+            <TableCell component="th" align="center">
+              Actions
+            </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {tableData.map((row) => (
             <TableRow
-              key={row.name}
+              key={row._id}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
               <TableCell component="th" align="center" scope="row">
-                {row.name}
+                {row?.Name}
               </TableCell>
-              <TableCell align="center">{row.quantity}</TableCell>
-              <TableCell align="center">{row.price}</TableCell>
-              <TableCell align="center">{row.color}</TableCell>
-              <TableCell align="center">{row.Brand}</TableCell>
+              <TableCell align="center">{row?.Quantity}</TableCell>
+              <TableCell align="center">{row?.Price}</TableCell>
+              <TableCell align="center">{row?.Color}</TableCell>
+              <TableCell align="center">{row?.Brand}</TableCell>
+              <TableCell align="center">
+                <div className="tableActions">
+                  <span
+                    className="update"
+                    onClick={() => updateFunction(row, true)}
+                  >
+                    Update
+                  </span>
+                  <span
+                    className="delete"
+                    onClick={() => deleteFunction(row?._id)}
+                  >
+                    Delete
+                  </span>
+                </div>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
