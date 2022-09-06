@@ -3,10 +3,12 @@ import AllProducts from "components/AllProducts/AllProducts";
 import AdminService from "services/AdminService";
 import "assets/scss/component/product.scss";
 import AddProducts from "components/AddProducts/AddProducts";
+import { useAdminContext } from "store/contexts/adminContext";
 
 export default function Products() {
   const [allProducts, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { allCategories } = useAdminContext();
 
   useEffect(() => {
     (async () => {
@@ -33,15 +35,11 @@ export default function Products() {
     setProducts(allProducts.filter((product) => product._id !== id));
   };
 
-  console.log(allProducts);
-
-  const updateProduct = async (id, product) => {
+  const updateProduct = async (product) => {
     const productCopy = [...allProducts];
-
-    console.log(product);
     productCopy[
       productCopy.findIndex((tProduct) => {
-        return tProduct._id === id;
+        return tProduct._id === product?._id;
       })
     ] = {
       ...product,
@@ -54,7 +52,10 @@ export default function Products() {
     <div className="productRoot">
       <div className="productContent">
         <h5>Products</h5>
-        <AddProducts createProduct={createProduct} />
+        <AddProducts
+          createProduct={createProduct}
+          allCategories={allCategories}
+        />
         <AllProducts
           allProducts={allProducts}
           updateProduct={updateProduct}

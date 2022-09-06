@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Table from "components/Table/Table";
 import Loader from "components/Loader/Loader";
 import UpdateProduct from "components/UpdateProduct";
+import TableRow from "@mui/material/TableRow";
+import TableCell from "@mui/material/TableCell";
 
 export default function AllProducts({
   loading,
@@ -17,6 +19,8 @@ export default function AllProducts({
     { id: 2, heading: "Price" },
     { id: 3, heading: "Color" },
     { id: 4, heading: "Brand" },
+    { id: 5, heading: "Image" },
+    { id: 6, heading: "Category" },
   ]);
 
   const deleteFunction = (id) => {
@@ -50,12 +54,46 @@ export default function AllProducts({
           <div className="noProduct">There is no products</div>
         )}
         {!loading && allProducts.length !== 0 && (
-          <Table
-            headings={productHeading}
-            tableData={allProducts}
-            deleteFunction={deleteFunction}
-            updateFunction={updateFunction}
-          />
+          <Table headings={productHeading}>
+            {allProducts.map((row) => (
+              <TableRow
+                key={row._id}
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              >
+                <TableCell component="th" align="center" scope="row">
+                  {row?.Name}
+                </TableCell>
+                <TableCell align="center">{row?.Quantity}</TableCell>
+                <TableCell align="center">{row?.Price}</TableCell>
+                <TableCell align="center">{row?.Color}</TableCell>
+                <TableCell align="center">{row?.Brand}</TableCell>
+                <TableCell align="center">
+                  <img
+                    className="productImage"
+                    src={row?.ImagePath}
+                    alt={row?.Name}
+                  />
+                </TableCell>
+                <TableCell align="center">{row?.CategoryId?.Name}</TableCell>
+                <TableCell align="center">
+                  <div className="tableActions">
+                    <span
+                      className="update"
+                      onClick={() => updateFunction(row, true)}
+                    >
+                      Update
+                    </span>
+                    <span
+                      className="delete"
+                      onClick={() => deleteFunction(row?._id)}
+                    >
+                      Delete
+                    </span>
+                  </div>
+                </TableCell>
+              </TableRow>
+            ))}
+          </Table>
         )}
       </div>
     </>

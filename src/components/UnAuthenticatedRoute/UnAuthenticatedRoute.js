@@ -30,7 +30,10 @@ export default function UnauthenticatedRoute({ children, ...rest }) {
     <div>
       {!isAuthenticated && children}
       {isAuthenticated && (
-        <Navigate to={redirect === "" || redirect === null ? "/" : redirect} />
+        <Navigate
+          replace
+          to={redirect === "" || redirect === null ? "/" : redirect}
+        />
       )}
     </div>
   );

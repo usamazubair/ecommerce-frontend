@@ -29,8 +29,21 @@ export default function UpdateProduct({
     onSubmit: async (values) => {
       try {
         setLoading(true);
-        await AdminService.updateProduct(productData._id, values);
-        updateProduct(productData._id, values);
+        await AdminService.updateProduct(
+          productData._id,
+          values
+        );
+
+        var productCopy = {
+          _id: productData._id,
+          Name: values.name,
+          Quantity: values.quantity,
+          Price: values.price,
+          Color: values.color,
+          Brand: values.brand,
+        };
+
+        updateProduct(productCopy);
       } catch (e) {}
       setLoading(false);
     },

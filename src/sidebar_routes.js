@@ -1,32 +1,32 @@
 import Products from "views/AdminDashboard/Products/Products";
-import Customers from "views/AdminDashboard/Customers/Customers";
+import Categories from "views/AdminDashboard/Categories/Categories";
 import Reviews from "views/AdminDashboard/Reviews/Reviews";
 import Orders from "views/AdminDashboard/Orders/Orders";
 
 const sidebarRoutes = [
   {
-    path: "/products",
+    path: "products",
     name: "products",
     icon: "",
     component: <Products />,
     layout: "",
   },
   {
-    path: "/customers",
-    name: "customers",
+    path: "categories",
+    name: "categories",
     icon: "",
-    component: <Customers />,
+    component: <Categories />,
     layout: "",
   },
   {
-    path: "/reviews",
+    path: "reviews",
     name: "reviews",
     icon: "",
     component: <Reviews />,
     layout: "",
   },
   {
-    path: "/orders",
+    path: "orders",
     name: "orders",
     icon: "",
     component: <Orders />,

@@ -3,14 +3,14 @@ import Profile from "views/AdminDashboard/Profile/Profile";
 
 const dashboardRoutes = [
   {
-    path: "/dashboard",
+    path: "dashboard",
     name: "dashboard",
     icon: "",
     component: <AdminDashboard/>,
     layout: "",
   },
   {
-    path: "/profile",
+    path: "profile",
     name: "profile",
     icon: "",
     component: <Profile/>,

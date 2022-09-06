@@ -20,7 +20,7 @@ import { useUserContext } from "store/contexts/userContext";
 const theme = createTheme();
 
 export default function SignIn() {
-  const { setIsAuthenticated } = useUserContext();
+  const { setIsAuthenticated, setUserRole } = useUserContext();
 
   const formik = useFormik({
     initialValues: {
@@ -33,6 +33,8 @@ export default function SignIn() {
     onSubmit: async (values) => {
       try {
         var response = await AuthService.login(values);
+
+        setUserRole(response.data.user.Role);
         setLogin({
           user: response.data.user,
           token: response.data.token,
@@ -46,6 +48,7 @@ export default function SignIn() {
   const setLogin = ({ role, user, token }) => {
     localStorage.setItem("user", JSON.stringify(user));
     localStorage.setItem("token", token);
+    localStorage.setItem("role", JSON.stringify(user.Role))
     setIsAuthenticated(true);
   };
 

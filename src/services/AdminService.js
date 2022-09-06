@@ -5,8 +5,9 @@ class AdminService {
     return axios.get("products");
   }
 
-  addProduct(param) {
-    return axios.post("products", param);
+  addProduct(param, imagePath) {
+    var data = { ...param, imagePath: imagePath };
+    return axios.post("products", data);
   }
   deleteProduct(id) {
     return axios.delete("products", { data: { id: id } });
@@ -21,6 +22,27 @@ class AdminService {
     };
 
     return axios.put("products", { id, updateData });
+  }
+
+  getAllCategories() {
+    return axios.get("category");
+  }
+
+  addCategory(param) {
+    return axios.post("category", param);
+  }
+
+  updateCategory(id, data) {
+    const updateData = {
+      Name: data.name,
+      Country: data.country,
+    };
+
+    return axios.put("category", { id, updateData });
+  }
+
+  deleteCategory(id) {
+    return axios.delete("category", { data: { id: id } });
   }
 }
 

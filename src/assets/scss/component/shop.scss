@@ -1,0 +1,144 @@
+.shopNavbar {
+  background: #1e1e1e;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  padding: 30px 20px;
+}
+
+.shopCategories {
+  border: 1px solid #ddd;
+  border-color: #dae2e6;
+  border-radius: 2px;
+  .heading {
+    letter-spacing: 0.01em;
+    color: #465157;
+    font-weight: 700;
+    border-bottom: 1px solid #ddd;
+    background-color: #f4f4f4;
+    padding: 15px 20px 15px;
+  }
+  .categoryName {
+    padding: 12px 20px;
+    line-height: 1;
+    margin: 0;
+    border: 0;
+    border-bottom: 1px solid #ddd;
+  }
+}
+
+.detailRoot {
+  background-color: #f4f4f4;
+  margin-bottom: 27px;
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 20px;
+  .container {
+    padding-top: 14px;
+    padding-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    svg {
+      fill: #465157;
+      width: 30px;
+      height: 30px;
+    }
+    .detailContent {
+      display: inline-block;
+      vertical-align: middle;
+      text-align: left;
+      margin-left: 5px;
+      h3 {
+        font-size: 14px;
+        font-weight: 600;
+        color: #465157;
+        line-height: 19px;
+        margin: 0;
+      }
+      .description {
+        margin: 0;
+        font-size: 13px;
+        font-weight: 300;
+        color: #839199;
+        line-height: 19px;
+      }
+    }
+  }
+}
+
+.footer {
+  background: #1e1e1e;
+  color: white;
+  // height: calc(100vh - 648px);
+  position: relative;
+  .footerHeading {
+    background-color: #b30008;
+    position: absolute;
+    padding: 10px 20px 6px;
+    top: -15px;
+    left: 15px;
+    &::before {
+      content: "";
+      display: block;
+      width: 7px;
+      height: 0;
+      position: absolute;
+      left: -17px;
+      top: 0px;
+      border-right: 10px solid #069;
+      border-top: 16px solid transparent;
+    }
+
+    span {
+      color: #fff;
+      font-size: 20px;
+      font-family: "Shadows Into Light", cursive;
+      line-height: 1;
+    }
+  }
+  .footerDetail {
+    padding-top: 50px;
+    display: flex;
+    justify-content: center;
+    gap: 150px;
+    h3 {
+      margin: 10px 0;
+    }
+    .footerContactInfo {
+      display: flex;
+      flex-direction: column;
+      .info {
+        display: flex;
+        flex-direction: column;
+        margin: 10px 0;
+        b {
+          font-size: 15px;
+          margin: 10px 0;
+          font-weight: unset;
+        }
+        span {
+          font-size: 13px;
+          margin-top: 6px;
+        }
+      }
+    }
+    .priceCaution {
+      p {
+        max-width: 550px;
+        font-size: 13px;
+        line-height: 20px;
+      }
+    }
+    .footerRoute {
+      display: flex;
+      gap: 50px;
+      .leftSide,
+      .rightSide {
+        p {
+          margin: 10px 0;
+        }
+      }
+    }
+  }
+}

@@ -12,6 +12,11 @@ body {
   cursor: pointer;
 }
 
+.loader {
+  display: flex;
+  justify-content: center;
+}
+
 .tableActions {
   display: flex;
   justify-content: center;
@@ -24,4 +29,41 @@ body {
     color: red;
     cursor: pointer;
   }
+}
+
+.imagePreviewContentContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  animation-name: zoom;
+  animation-duration: 0.6s;
+  img {
+    object-fit: contain !important;
+  }
+}
+
+.productImage {
+  width: 100px;
+  height: 100px;
+}
+
+.progressButton {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.dropDownError {
+  border: 1px solid red !important;
+  &:hover,
+  &:focus {
+    border: 1px solid red !important;
+  }
+}
+
+.errorMessage {
+  margin-top: 10px;
+  color: red;
 }

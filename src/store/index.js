@@ -10,6 +10,9 @@ export default function Store({ children }) {
   const [isAuthenticated, setIsAuthenticated] = useState(
     tokenData && userData ? true : false
   );
+  const [userRole, setUserRole] = useState(
+    userData && tokenData ? JSON.parse(localStorage.getItem("role")) : null
+  );
 
   return (
     <UserContext.Provider
@@ -18,6 +21,8 @@ export default function Store({ children }) {
         setUser,
         isAuthenticated,
         setIsAuthenticated,
+        setUserRole,
+        userRole,
       }}
     >
       {children}

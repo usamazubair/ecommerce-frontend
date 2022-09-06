@@ -7,9 +7,14 @@ import * as Yup from "yup";
 import Box from "@mui/material/Box";
 import Loader from "components/Loader/Loader";
 import AdminService from "services/AdminService";
+import DropDown from "components/DropDown/DropDown";
+import AttachmentPreview from "components/AttachmentPreview/AttachmentPreview";
+import AttachmentSelection from "components/AttachmentSelection/AttachmentSelection";
+import GeneralService from "services/GeneralService";
 
-export default function AddProducts({ createProduct }) {
+export default function AddProducts({ createProduct, allCategories }) {
   const [loading, setLoading] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState(0);
   const [openModal, setOpen] = useState(false);
 
   const formik = useFormik({
@@ -19,20 +24,44 @@ export default function AddProducts({ createProduct }) {
       price: "",
       color: "",
       brand: "",
+      category: "",
+      attachment: null,
     },
     validateOnBlur: false,
     validationSchema: productValidationSchema(),
     onSubmit: async (values) => {
       try {
         setLoading(true);
-        var response = await AdminService.addProduct(values);
+        var generalResponse = await GeneralService.uploadImage(
+          "uploadImage",
+          values.attachment,
+          (progress) => {
+            setUploadProgress(`${Math.floor(progress)}%`);
+          }
+        );
+
+        var { filePath } = generalResponse.data;
+        var response = await AdminService.addProduct(values, filePath);
         createProduct(response.data.response);
+        formik.resetForm();
       } catch (e) {}
       setLoading(false);
     },
   });
 
   const handleOpen = () => setOpen(true);
+
+  const handleChange = (event) => {
+    formik.setFieldValue("category", event.target.value);
+  };
+
+  const onAttachmentSelected = (file) => {
+    formik.setFieldValue("attachment", file);
+  };
+
+  const clearAttachment = () => {
+    formik.setFieldValue("attachment", null);
+  };
 
   return (
     <div className="addProductHeading">
@@ -86,6 +115,27 @@ export default function AddProducts({ createProduct }) {
             type={"text"}
             error={formik.errors.brand}
           />
+          <div className="productFooterSection">
+            <DropDown
+              heading={"Category"}
+              dropDownData={allCategories}
+              handleChange={handleChange}
+              value={formik.values.category}
+              error={formik.errors.category}
+            />
+            <AttachmentSelection
+              type="image"
+              showSelectors={false}
+              onChange={onAttachmentSelected}
+              accepted={[".png", ".jpg", ".jpeg"]}
+            />
+            {!!formik.values.attachment && (
+              <AttachmentPreview
+                attachment={formik.values.attachment}
+                clearAttachment={clearAttachment}
+              />
+            )}
+          </div>
           <Button
             type="submit"
             disabled={loading ? true : false}
@@ -93,7 +143,13 @@ export default function AddProducts({ createProduct }) {
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
           >
-            {!loading ? "Add Product" : <Loader />}
+            {!loading ? (
+              "Add Product"
+            ) : (
+              <div className="progressButton">
+                {uploadProgress} <Loader />
+              </div>
+            )}
           </Button>
         </Box>
       </Modal>
@@ -108,5 +164,7 @@ const productValidationSchema = () => {
     price: Yup.number().required(),
     color: Yup.string().required(),
     brand: Yup.string().required(),
+    category: Yup.mixed().required(),
+    attachment: Yup.mixed().required(),
   });
 };

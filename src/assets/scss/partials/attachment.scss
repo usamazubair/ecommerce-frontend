@@ -1,0 +1,22 @@
+.attachmentFile {
+  display: none;
+}
+
+.attachmentPreview {
+  max-height: 120px;
+  max-width: 120px;
+  min-height: 120px;
+  min-width: 120px;
+  background-color: black;
+  cursor: pointer;
+  position: relative;
+  .deleteIcon {
+    position: absolute;
+    right: 0;
+    fill: #333;
+    background: white;
+    width: 20px;
+    height: 20px;
+    padding: 5px;
+  }
+}

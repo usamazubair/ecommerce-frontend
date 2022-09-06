@@ -21,11 +21,7 @@ baseInstance.interceptors.request.use(function (config) {
 baseInstance.interceptors.response.use(
   (res) => res,
   (err) => {
-    if (
-      err?.response?.status === 401 &&
-      !err?.request?.responseURL?.includes("login") &&
-      !err?.request?.responseURL?.includes("delete-account")
-    ) {
+    if (err?.response?.status === 401) {
       localStorage.clear();
 
       window.location.reload();
