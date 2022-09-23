@@ -1,0 +1,41 @@
+.productCard {
+  min-width: 240px;
+  .productCImage {
+    object-fit: contain;
+    min-height: 200px;
+  }
+  .productCContent {
+    background: #f4f4f4;
+    .productTitle {
+      font-weight: 500;
+      font-size: 15px;
+    }
+    .dropper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding-top: 20px;
+      .increament,
+      .decreament {
+        border: 1px solid #727272;
+        display: flex;
+        cursor: pointer;
+      }
+      .quantity {
+        border: 1px solid #727272;
+        padding: 3px 12px;
+      }
+    }
+  }
+  .action {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.allItemRoot {
+  padding: 10px 30px 0px 30px;
+  .heading {
+    margin-bottom: 50px;
+  }
+}

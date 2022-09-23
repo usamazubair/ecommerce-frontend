@@ -1,9 +1,39 @@
+.shopContent {
+  min-height: calc(100vh - 220px);
+}
+
 .shopNavbar {
   background: #1e1e1e;
   color: white;
   display: flex;
   justify-content: space-between;
   padding: 30px 20px;
+  .rightSide {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    a {
+      text-decoration: none;
+      color: unset;
+    }
+    .cartValue {
+      position: relative;
+      span {
+        position: absolute;
+        top: -14px;
+        right: 9px;
+      }
+      &:hover {
+        cursor: pointer;
+        span {
+          color: rgb(179, 179, 233);
+        }
+        svg {
+          fill: rgb(179, 179, 233);
+        }
+      }
+    }
+  }
 }
 
 .shopCategories {
@@ -24,6 +54,11 @@
     margin: 0;
     border: 0;
     border-bottom: 1px solid #ddd;
+    a {
+      text-decoration: none;
+      color: #494949;
+      font-size: 14px;
+    }
   }
 }
 

@@ -5,18 +5,33 @@ import shopRoutes from "shopRoutes";
 import "assets/scss/component/shop.scss";
 import { ShopContext } from "store/contexts/shopContext";
 import AdminService from "services/AdminService";
+import ShopService from "services/ShopService";
 import ShopNavbar from "components/ShopNavbar/ShopNavbar";
 import Footer from "components/Footer/Footer";
 
 export default function Shop() {
   const { userRole } = useUserContext();
   const [allCategories, setCategories] = useState([]);
+  const [cart, setCart] = useState(null);
 
   useEffect(() => {
     (async () => {
       try {
         const response = await AdminService.getAllCategories();
         setCategories(response.data.data);
+      } catch (e) {
+        console.log(e);
+      }
+    })();
+  }, []);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const response = await ShopService.getCart();
+
+        console.log(response.data.data);
+        setCart(response.data.data);
       } catch (e) {
         console.log(e);
       }
@@ -46,11 +61,13 @@ export default function Shop() {
       value={{
         allCategories,
         setCategories,
+        setCart,
+        cart,
       }}
     >
       <div>
-        <ShopNavbar />
-        <div>{switchRoutes}</div>
+        <ShopNavbar cart={cart} />
+        <div className="shopContent">{switchRoutes}</div>
         <Footer />
       </div>
     </ShopContext.Provider>

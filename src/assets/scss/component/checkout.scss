@@ -1,0 +1,179 @@
+.stepperRoot {
+  padding-top: 30px;
+}
+
+.phoneNumberForm {
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.4375em;
+  letter-spacing: 0.00938em;
+  color: rgba(0, 0, 0, 0.87);
+  box-sizing: border-box;
+  position: relative;
+  cursor: text;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 100%;
+  position: relative;
+
+  &:focus-visible {
+    outline: 0;
+  }
+}
+
+.phoneNumberRoot {
+  display: flex;
+  gap: 10px;
+  padding-top: 10px;
+  .content {
+    border: 1px solid #839199;
+    padding: 16.5px 14px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+  }
+  .phoneNumberInput {
+    font: inherit;
+    letter-spacing: inherit;
+    color: currentColor;
+    padding: 4px 0 5px;
+    border-color: rgb(0 0 0 / 12%);
+    box-sizing: content-box;
+    background: none;
+    height: 1.4375em;
+    margin: 0;
+    -webkit-tap-highlight-color: transparent;
+    display: block;
+    min-width: 0;
+    width: 100%;
+    -webkit-animation-name: mui-auto-fill-cancel;
+    animation-name: mui-auto-fill-cancel;
+    -webkit-animation-duration: 10ms;
+    animation-duration: 10ms;
+    padding: 16.5px 14px;
+    border-radius: 4px;
+    &:focus {
+      border: 2px solid #1976d2;
+    }
+    &:focus-visible {
+      outline-offset: unset !important;
+      outline: 0 !important;
+    }
+  }
+}
+
+.pOptionRoot {
+  max-width: 500px;
+  .paymentOptions {
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    gap: 8px;
+    padding-bottom: 10px;
+    div {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 20px;
+      svg {
+        fill: #494949;
+      }
+      button {
+        position: absolute;
+        right: 0;
+      }
+    }
+  }
+}
+
+.shippingForm {
+  padding: 20px;
+}
+
+.phoneError {
+  border: 1px solid red !important;
+  &:focus {
+    border: 1px solid red !important;
+  }
+}
+
+.phoneErrorContext {
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 400;
+  font-size: 0.75rem;
+  line-height: 1.66;
+  letter-spacing: 0.03333em;
+  text-align: left;
+  margin-top: 3px;
+  margin-right: 14px;
+  margin-bottom: 0;
+  margin-left: 14px;
+  color: #d32f2f;
+}
+
+.orderSummary {
+  .detail {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  .allItemOrders {
+    background: #f5f5f500;
+    .allItemHeading {
+      border-bottom: 1px solid #1e1e1e;
+      margin: 16px;
+      padding: 0;
+    }
+  }
+  .orderContent {
+    max-width: 400px;
+    width: 100%;
+    background: #f5f5f5;
+    padding: 22px 27px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    .heading {
+      padding-bottom: 9px;
+      color: #777;
+      font-weight: 300;
+      font-size: 25px;
+    }
+    .cartRoot {
+      display: flex;
+      justify-content: space-between;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #bdbdbd;
+      .img {
+        width: 73px;
+        height: 73px;
+      }
+      .cartDetail {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        font-size: 14px;
+        font-weight: 400;
+      }
+      .cartRupee {
+        line-height: 1;
+        font-size: 23px;
+        font-weight: 400;
+      }
+      &:nth-last-child(1) {
+        border-bottom: unset !important;
+      }
+    }
+  }
+}

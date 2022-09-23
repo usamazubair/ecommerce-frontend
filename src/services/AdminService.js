@@ -44,6 +44,10 @@ class AdminService {
   deleteCategory(id) {
     return axios.delete("category", { data: { id: id } });
   }
+
+  getAllOrders() {
+    return axios.get("order");
+  }
 }
 
 export default new AdminService();
