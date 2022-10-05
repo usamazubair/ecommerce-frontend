@@ -5,6 +5,7 @@ import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 import { Button } from "@mui/material";
 import ShippingInformation from "components/ShippingInformation/ShippingInformation";
+import CartInformation from "components/CartInformation/CartInformation";
 
 export default function AllOrders({
   allOrders,
@@ -14,17 +15,25 @@ export default function AllOrders({
 }) {
   const [openShippingModal, setShippingModal] = useState(false);
   const [shippingDetails, setShippingDetails] = useState(null);
+  const [openCartModal, setCartModal] = useState(false);
+  const [cartDetails, setCartDetails] = useState(null);
   const [orderHeading] = useState([
     { id: 0, heading: "Customer Name" },
     { id: 1, heading: "Shipping Information" },
     { id: 2, heading: "Cart Information" },
     { id: 3, heading: "Payment Type" },
     { id: 4, heading: "Customer Email" },
+    { id: 5, heading: "Proceed" },
   ]);
 
   const showShippingDetails = (detail, value) => {
     setShippingDetails(detail);
     setShippingModal(value);
+  };
+
+  const showCartDetails = (detail, value) => {
+    setCartDetails(detail);
+    setCartModal(value);
   };
 
   return (
@@ -34,6 +43,13 @@ export default function AllOrders({
           openModal={openShippingModal}
           setModal={setShippingModal}
           shippingData={shippingDetails}
+        />
+      )}
+      {openCartModal && (
+        <CartInformation
+          openModal={openCartModal}
+          setModal={setCartModal}
+          productData={cartDetails}
         />
       )}
       <div className="content">
@@ -68,26 +84,36 @@ export default function AllOrders({
                   </Button>
                 </TableCell>
                 <TableCell align="center">
-                  <Button variant="outlined">Click</Button>
+                  <Button
+                    variant="outlined"
+                    onClick={() => showCartDetails(row?.CartId?.Products, true)}
+                  >
+                    Click
+                  </Button>
                 </TableCell>
                 <TableCell align="center">{row?.PaymentOption}</TableCell>
                 <TableCell align="center">
                   {row?.ShippingDetail?.email}
                 </TableCell>
                 <TableCell align="center">
+                  {row.Proceed ? "true" : "false"}
+                </TableCell>
+                <TableCell align="center">
                   <div className="tableActions">
-                    <span
+                    <Button
+                      disabled={row?.Proceed}
                       className="update"
                       onClick={() => updateOrder(row, true)}
                     >
-                      Update
-                    </span>
-                    <span
+                      Confirm
+                    </Button>
+                    <Button
                       className="delete"
+                      color="error"
                       onClick={() => deleteOrder(row?._id)}
                     >
                       Delete
-                    </span>
+                    </Button>
                   </div>
                 </TableCell>
               </TableRow>

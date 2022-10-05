@@ -6,7 +6,7 @@ class AdminService {
   }
 
   addProduct(param, imagePath) {
-    var data = { ...param, imagePath: imagePath };
+    let data = { ...param, imagePath: imagePath };
     return axios.post("products", data);
   }
   deleteProduct(id) {
@@ -47,6 +47,11 @@ class AdminService {
 
   getAllOrders() {
     return axios.get("order");
+  }
+
+  updateOrder(id, value) {
+    let data = { Proceed: value };
+    return axios.put("order", { id, ...data });
   }
 }
 

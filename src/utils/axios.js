@@ -1,5 +1,6 @@
 import axios from "axios";
 
+console.log(axios);
 const baseInstance = axios.create({
   baseURL: `http://localhost:3001/shopify`,
 });
@@ -21,7 +22,11 @@ baseInstance.interceptors.request.use(function (config) {
 baseInstance.interceptors.response.use(
   (res) => res,
   (err) => {
-    if (err?.response?.status === 401) {
+    console.log(err?.request?.responseURL);
+    if (
+      err?.response?.status === 401 &&
+      !err?.request?.responseURL?.includes("login")
+    ) {
       localStorage.clear();
 
       window.location.reload();

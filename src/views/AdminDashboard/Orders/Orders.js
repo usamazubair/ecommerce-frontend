@@ -19,7 +19,26 @@ export default function Orders() {
     })();
   }, []);
 
-  const updateOrder = () => {};
+  const updateOrder = async (order, value) => {
+    try {
+      let updatedOrder = { ...order, Proceed: value };
+      // AdminService.updateOrder(order._id, value);
+
+      console.log(updatedOrder);
+      const ordersCopy = [...allOrders];
+      ordersCopy[
+        ordersCopy.findIndex((tOrder) => {
+          return tOrder._id === order._id;
+        })
+      ] = {
+        ...updatedOrder,
+      };
+
+      setOrders(ordersCopy);
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   const deleteOrder = () => {};
 
